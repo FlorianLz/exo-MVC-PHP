@@ -3,6 +3,9 @@
 namespace routes;
 
 use controllers\AuthController;
+use controllers\ClientController;
+use controllers\FicheController;
+use controllers\ProduitController;
 use controllers\SampleWebController;
 use controllers\TodoWeb;
 use routes\base\Route;
@@ -16,6 +19,9 @@ class Web
         $main = new SampleWebController();
         $todo = new TodoWeb();
         $authController = new AuthController();
+        $clientController = new ClientController();
+        $ficheController = new FicheController();
+        $produitController = new ProduitController();
 
 
 
@@ -32,6 +38,15 @@ class Web
                     Route::Add('/ajouter', [$todo, 'ajouter']);
                     Route::Add('/terminer', [$todo, 'terminer']);
                     Route::Add('/supprimer', [$todo, 'supprimer']);
+                    Route::Add('/clients', [$clientController, 'liste']);
+                    Route::Add('/client/supprimer/{id}', [$clientController, 'delete']);
+                    Route::Add('/client/addProduct/{idClient}/{idProduit}', [$clientController, 'addProduct']);
+                    Route::Add('/client/addProduct/{idClient}', [$clientController, 'addProduct']);
+                    Route::Add('/client/{id}', [$ficheController, 'fiche']);
+                    Route::Add('/produits', [$produitController, 'liste']);
+                    Route::Add('/produit/supprimer/{id}', [$produitController, 'delete']);
+                    Route::Add('/produit/{id}', [$produitController, 'fiche']);
+
                 } else {
                     Route::Add('/', function () {
                         header('Location: /login');
