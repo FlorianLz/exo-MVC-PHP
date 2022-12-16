@@ -16,9 +16,9 @@ class SessionHelpers
         session_start();
     }
 
-    static function login(mixed $equipe): void
+    static function login(mixed $infosUser): void
     {
-        $_SESSION['LOGIN'] = $equipe;
+        $_SESSION['LOGIN'] = $infosUser;
     }
 
     static function logout(): void
